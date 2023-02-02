@@ -49,7 +49,9 @@ const App = () => {
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem('tasks'))
-    setTasks(items)
+    if (items) {
+      setTasks(items)
+    }
   }, [])
 
   useEffect(() => {
@@ -98,7 +100,7 @@ const App = () => {
 
       <form onSubmit={addTask} className={`flex flex-col sm:flex-row gap-3 ${currentDiv === 'all' ? '' : 'hidden'}`}>
         <input type="text" className='flex-grow rounded-lg h-11 shadow-md px-4 outline-blue-300 text-sm text-gray-800'
-         placeholder='add a task' onChange={(e) => setTaskInput(e.target.value)} />
+         placeholder='add a task' value={taskInput} onChange={(e) => setTaskInput(e.target.value)} />
         <button className='bg-blue-500 rounded-lg px-6 py-2 text-white font-bold' type='submit'>Add</button>
       </form>
 
